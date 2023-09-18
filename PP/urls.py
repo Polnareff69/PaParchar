@@ -19,6 +19,6 @@ from eventos import views as eventoVista
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', eventoVista.home),
+    path('', eventoVista.home, name='home'),
     path('<int:year>/<str:month>/', eventoVista.home),
 ]
