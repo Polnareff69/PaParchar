@@ -7,12 +7,14 @@ from .models import Event
 admin.site.register(User)
 #admin.site.register(Event)
 
+#crea el registro Venue y lo customiza
 @admin.register(Venue)
 class VenueADmin(admin.ModelAdmin):
     list_display = ('name', 'address')
     ordering = ('name',)
     search_fields = ('name', 'address')
 
+#crea el registro Event y lo customiza
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     fields = (('name','venue'), 'event_date', 'company')
