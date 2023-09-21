@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', eventoVista.home, name='home'),
     path('<int:year>/<str:month>/', eventoVista.home),
+    path('eventos', eventoVista.all_events, name="eventlist"),
 ]
