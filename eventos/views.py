@@ -23,4 +23,4 @@ def home(request, year = datetime.now().year, month = datetime.now().strftime('%
 
 def all_events(request):
     event_list = Event.objects.all()
-    return render(request, 'eventos/eventlist.html', {'eventlist':event_list})
+    return render(request, 'eventos/eventlist.html', {'event_list':event_list})
