@@ -3,7 +3,7 @@ from django.http import HttpResponse
 import calendar 
 from calendar import HTMLCalendar 
 from datetime import datetime  
-from .models import Event
+from .models import Event, Venue
 from .forms import VenueForm
 from django.http import HttpResponseRedirect
 
@@ -42,3 +42,14 @@ def addvenue(request):
 
     form = VenueForm
     return render(request, 'eventos/addvenue.html', {'form':form, 'submitted':submitted})
+
+
+def venues(request):
+    venue_list = Venue.objects.all()
+    return render(request, 'eventos/venue.html', {'venue_list':venue_list})
+
+
+def show_venues(request, venue_id):
+    #venue_list = Venue.objects.all()
+    venue = Venue.objects.get(pk=venue_id)
+    return render(request, 'eventos/show_venue.html', {'venue':venue})

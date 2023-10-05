@@ -23,4 +23,6 @@ urlpatterns = [
     path('<int:year>/<str:month>/', eventoVista.home),
     path('eventos', eventoVista.all_events, name="eventlist"),
     path('addvenue',eventoVista.addvenue, name='addvenue'),
+    path('venue',eventoVista.venues, name='venue'),
+    path('show_venue/<venue_id>',eventoVista.show_venues, name='show_venue'),
 ]
