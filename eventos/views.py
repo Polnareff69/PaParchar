@@ -3,9 +3,11 @@ from django.http import HttpResponse
 import calendar 
 from calendar import HTMLCalendar 
 from datetime import datetime  
-from .models import Event, Venue
+from .models import Event, Venue, User
 from .forms import VenueForm
 from django.http import HttpResponseRedirect
+from django.db.models import Q
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -53,3 +55,36 @@ def show_venues(request, venue_id):
     #venue_list = Venue.objects.all()
     venue = Venue.objects.get(pk=venue_id)
     return render(request, 'eventos/show_venue.html', {'venue':venue})
+
+def show_events(request, event_id):
+    #venue_list = Venue.objects.all()
+    event = Event.objects.get(pk=event_id)
+    return render(request, 'eventos/show_event.html', {'event':event})
+
+
+
+#def search_venue(request):
+#    if request.method == "POST":
+#        searched = request.POST['searched']
+#        venues = Venue.objects.filter(name__contains=searched)
+#        return render(request,'eventos/search_venue.html', {'searched':searched, 'venues':venues })
+#    else:
+#        return render(request,'eventos/search_venue.html', {})
+
+
+# views.py
+
+
+def search_result(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        venue_results = Venue.objects.filter(name__icontains=searched)
+        event_results = Event.objects.filter(name__icontains=searched)
+        user_results = User.objects.filter(nickname__icontains=searched)
+
+        # Combina los resultados en una lista de tuplas (resultado, tipo)
+        results = [(result, 'Venue') for result in venue_results] + [(result, 'Event') for result in event_results] + [(result, 'User') for result in user_results]
+
+        return render(request, 'eventos/search_result.html', {'searched': searched, 'results': results})
+    else:
+        return render(request, 'eventos/search_result.html', {})
