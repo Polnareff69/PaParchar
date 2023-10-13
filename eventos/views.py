@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import calendar 
 from calendar import HTMLCalendar 
@@ -61,20 +61,6 @@ def show_events(request, event_id):
     event = Event.objects.get(pk=event_id)
     return render(request, 'eventos/show_event.html', {'event':event})
 
-
-
-#def search_venue(request):
-#    if request.method == "POST":
-#        searched = request.POST['searched']
-#        venues = Venue.objects.filter(name__contains=searched)
-#        return render(request,'eventos/search_venue.html', {'searched':searched, 'venues':venues })
-#    else:
-#        return render(request,'eventos/search_venue.html', {})
-
-
-# views.py
-
-
 def search_result(request):
     if request.method == "POST":
         searched = request.POST['searched']
@@ -88,3 +74,14 @@ def search_result(request):
         return render(request, 'eventos/search_result.html', {'searched': searched, 'results': results})
     else:
         return render(request, 'eventos/search_result.html', {})
+
+def update_venue(request, venue_id):
+	venue = Venue.objects.get(pk=venue_id)
+	form = VenueForm(request.POST or None, request.FILES or None, instance=venue)
+	if form.is_valid():
+		form.save()
+		return redirect('venue')
+
+	return render(request, 'eventos/update_venue.html', 
+		{'venue': venue,
+		'form':form})

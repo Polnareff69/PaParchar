@@ -27,4 +27,5 @@ urlpatterns = [
     path('show_venue/<venue_id>',eventoVista.show_venues, name='show_venue'),
     path('show_event/<event_id>',eventoVista.show_events, name='show_event'),
     path('search_result',eventoVista.search_result, name='search_result'),
+    path('update_venue/<venue_id>', eventoVista.update_venue, name='update_venue'),
 ]
