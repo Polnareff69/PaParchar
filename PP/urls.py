@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from eventos import views as eventoVista
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +31,4 @@ urlpatterns = [
     path('show_event/<event_id>',eventoVista.show_events, name='show_event'),
     path('search_result',eventoVista.search_result, name='search_result'),
     path('update_venue/<venue_id>', eventoVista.update_venue, name='update_venue'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
