@@ -4,7 +4,7 @@ import calendar
 from calendar import HTMLCalendar 
 from datetime import datetime  
 from .models import Event, Venue, User
-from .forms import VenueForm
+from .forms import VenueForm, EventForm
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.shortcuts import render
@@ -30,20 +30,20 @@ def all_events(request):
     return render(request, 'eventos/eventlist.html', {'event_list':event_list})
 
 #muestra y hace la logica de la seccion addvenue que añade un lugar
-def addvenue(request):
+def add_venue(request):
     submitted = False
     if request.method == "POST":
         form = VenueForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/addvenue?submitted=True')
+            return HttpResponseRedirect('/add_venue?submitted=True')
     else:
         form = VenueForm
         if'submitted' in request.GET:
             submitted = True
 
     form = VenueForm
-    return render(request, 'eventos/addvenue.html', {'form':form, 'submitted':submitted})
+    return render(request, 'eventos/add_venue.html', {'form':form, 'submitted':submitted})
 
 
 def venues(request):
@@ -85,3 +85,41 @@ def update_venue(request, venue_id):
 	return render(request, 'eventos/update_venue.html', 
 		{'venue': venue,
 		'form':form})
+
+
+def add_event(request):
+    submitted = False
+    if request.method == "POST":
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_event?submitted=True')
+    else:
+        form = EventForm
+        if'submitted' in request.GET:
+            submitted = True
+
+    form = EventForm
+    return render(request, 'eventos/add_event.html', {'form':form, 'submitted':submitted})
+
+def update_event(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    form = EventForm(request.POST or None, request.FILES or None, instance=event)
+    if form.is_valid():
+	    form.save()
+	    return redirect('eventlist')
+
+    return render(request, 'eventos/update_event.html', 
+	    {'event': event,
+	    'form':form})
+
+#Eliminar C.R.U.D
+def delete_event(request, event_id):
+     event = Event.objects.get(pk=event_id)
+     event.delete()
+     return redirect('eventlist')
+
+def delete_venue(request, venue_id):
+     venue = Venue.objects.get(pk=venue_id)
+     venue.delete()
+     return redirect('venue')

@@ -4,7 +4,7 @@
 {% block content %}
  
 
-
+<div class="container">
 <h1>Eventos</h1>
 <br/>
 
@@ -29,8 +29,13 @@
         </ul></p>
 
     </div>
+    <div class="card-footer text-body-secondary">
+      <a href="{% url 'update_event' event.id %}" class="btn btn-outline-secondary btn-sm">Actualizar evento</a>
+      <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm">Eliminar evento</a>
+    </div>  
   </div>
    <br/><br/>
 {% endfor %}
- 
+</div>
+
 {% endblock %}
