@@ -1,14 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
-from eventos import views as eventoVista
+from usuarios import views as usuariosVista
 from django.conf.urls.static import static
 from django.conf import settings
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('eventos.urls')),
-    path('usuarios/', include('django.contrib.auth.urls')),
-    path('usuarios/', include('usuarios.urls')),
+    path('login_user', usuariosVista.login_user, name='login_user'),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
