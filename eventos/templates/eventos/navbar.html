@@ -10,26 +10,35 @@
             <a class="nav-link active" aria-current="page" href="{% url 'eventlist' %}">Eventos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'add_venue' %}">Añadir Lugar</a>
+            <a class="nav-link" href="{% url 'venue' %}">Lugares</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="{% url 'add_event' %}">Añadir Evento</a>
+            <a class="nav-link " href="#">Algo</a>
           </li>
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link " href="{% url 'login_user' %}">login</a>
+            <a class="nav-link " href="{% url 'logout_user' %}">logout</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              Acciones de usuario
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'venue' %}">Lugares</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="{% url 'add_event' %}">Añadir Evento</a></li>
+              <li><a class="dropdown-item" href="{% url 'add_venue' %}">Añadir Lugar</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
         </ul>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'register_user' %}">Registrate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'login_user' %}">login</a>
+          </li>
+        {% endif %}
         <form class="d-flex" role="search" method= POST action = "{% url 'search_result' %}">
           {% csrf_token %}
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
