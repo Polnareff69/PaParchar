@@ -1,5 +1,3 @@
-{% extends 'eventos/base.html' %}
-
 
 {% block content %}
 
@@ -16,24 +14,44 @@
  <br/>
 </div>
 
-<div class="container">
-    <h1>Login</h1>  
-    <br/><br/>
+{% load static %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loggin</title>
+  <link rel="stylesheet" href='{% static "css/login.css" %}'>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <div class="wrapper">
     <form action="" method=POST>
-        {% csrf_token %}
-        <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Usuario</label>
-              <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" name="password">
-            </div>
-            <input type="submit" value="submit" class="btn btn-success">
-          </form> 
-    <br/>
-</div>
+      {% csrf_token %}
+      <h1>Login</h1>
+      <div class="input-box">
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
+        <i class='bx bxs-lock-alt' ></i>
+      </div>
+
+      <div class="remember-forgot">
+        <label><input type="checkbox">Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="register-link">
+        <p>Dont have an account? <a href="{% url 'register_user' %}"> Register</a></p>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
 
 
 {% endblock %}

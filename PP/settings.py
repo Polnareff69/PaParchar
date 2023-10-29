@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-!s7zwzh%h0#9sp5*p*#jm&1cb-_ie0uf)t&^3z+9pa8(kkkspc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['34.133.65.190']
+ALLOWED_HOSTS = ['34.133.65.190', 'localhost']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'eventos',
     'usuarios',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR,'eventos/static'),)
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
