@@ -1,4 +1,4 @@
-
+{% load static %}
 {% block content %}
 
 <div class="container">
@@ -14,7 +14,7 @@
  <br/>
 </div>
 
-{% load static %}
+
 <html>
 <head>
   <meta charset="UTF-8">
@@ -29,6 +29,7 @@
   <div class="wrapper">
     <form action="" method=POST>
       {% csrf_token %}
+      
       <h1>Login</h1>
       <div class="input-box">
         <input type="text" class="form-control" name="username" placeholder="Username" required>

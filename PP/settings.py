@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     'eventos',
     'usuarios',
     'social_django',
+
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

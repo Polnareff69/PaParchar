@@ -66,7 +66,7 @@ def search_result(request):
         searched = request.POST['searched']
         venue_results = Venue.objects.filter(name__icontains=searched)
         event_results = Event.objects.filter(name__icontains=searched)
-        user_results = User.objects.filter(nickname__icontains=searched)
+        user_results = User.objects.filter(username__icontains=searched)
 
         # Combina los resultados en una lista de tuplas (resultado, tipo)
         results = [(result, 'Venue') for result in venue_results] + [(result, 'Event') for result in event_results] + [(result, 'User') for result in user_results]
