@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE-edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loggin</title>
-  <link rel="stylesheet" href='{% static "css/login.css" %}'>
+  <link rel="stylesheet" href='{% static "css/register.css" %}'>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -34,15 +34,15 @@
   <div class="wrapper">
     <form action="{% url 'register_user' %}" method=POST>
       {% csrf_token %}
+      <a href="{% url 'home' %}">&#8592; Volver a la página de inicio</a>
       <h1>Registrate</h1>
       <div class="input-box">
   
       </div>
       <div class="input-box">
-        <label for="{{ form.usename.label }}">Username:</label>
+        <label for="{{ form.usename.label }}">Nombre de usuario</label>
         {{form.username}}
       </div>
-
       <div class="input-box">
         <label for="{{ form.first_name.label }}">Nombre</label>
         {{form.first_name}}
@@ -71,6 +71,7 @@
       <button type="submit" class="btn">Registrarme</button>
     </form>
   </div>
+
 </body>
 </html>
 
