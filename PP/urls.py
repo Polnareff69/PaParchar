@@ -10,5 +10,6 @@ urlpatterns = [
     path('', include('eventos.urls')),
     path('usuarios/', include('django.contrib.auth.urls')),
     path('usuarios/', include('usuarios.urls')),
+    #path("%%")
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
