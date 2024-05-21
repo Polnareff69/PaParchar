@@ -32,6 +32,7 @@
     <div class="card-footer text-body-secondary">
       <a href="{% url 'update_event' event.id %}" class="btn btn-outline-secondary btn-sm">Actualizar evento</a>
       <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm">Eliminar evento</a>
+      <a href="{% url 'show_map' event.venue.id %}" class="btn btn-outline-info btn-sm">Mostrar en el mapa</a>
     </div>  
   </div>
    <br/><br/>
