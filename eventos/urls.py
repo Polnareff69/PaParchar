@@ -18,6 +18,11 @@ from django.urls import path, include
 from eventos import views as eventoVista
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework.routers import DefaultRouter
+from .views import EventoViewSet
+
+router = DefaultRouter()
+router.register(r'eventos', EventoViewSet)
 
 
 urlpatterns = [
@@ -36,6 +41,8 @@ urlpatterns = [
     path('delete_venue/<venue_id>',eventoVista.delete_venue, name='delete_venue'),
     #path('map/', eventoVista.show_map, name='show_map'),
     path('map/<int:venue_id>/', eventoVista.show_map, name='show_map'),
+    path('', include(router.urls)),
+    
    
     
     #debug funciona

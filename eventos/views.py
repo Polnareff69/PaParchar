@@ -8,6 +8,11 @@ from .forms import VenueForm, EventForm
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.shortcuts import render
+import requests
+from .serializers import EventoSerializer
+from rest_framework import viewsets
+
+
 
 # Create your views here.
 
@@ -134,3 +139,6 @@ def show_map(request, venue_id):
     return render(request, 'eventos/map.html', {'api_key': 'AIzaSyDDmNlCxUaPrnv-pgCY_gYEKApbu7A1sm8', 'direccion': venue.address})
 
 
+class EventoViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventoSerializer
