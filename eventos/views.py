@@ -11,8 +11,8 @@ from django.shortcuts import render
 import requests
 from .serializers import EventoSerializer
 from rest_framework import viewsets
-
-
+from .report_generators import PDFReportGenerator, ExcelReportGenerator
+from django.http import FileResponse
 
 # Create your views here.
 
@@ -142,3 +142,22 @@ def show_map(request, venue_id):
 class EventoViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventoSerializer
+
+
+def download_pdf_report(request):
+    events = Event.objects.all()  # Obtén todos los eventos
+    generator = PDFReportGenerator()
+    generator.generate(events)
+
+    response = FileResponse(open('events_report.pdf', 'rb'), content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="events_report.pdf"'
+    return response
+
+def download_excel_report(request):
+    events = Event.objects.all()  # Obtén todos los eventos
+    generator = ExcelReportGenerator()
+    generator.generate(events)
+
+    response = FileResponse(open('events_report.xlsx', 'rb'), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename="events_report.xlsx"'
+    return response

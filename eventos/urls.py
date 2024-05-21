@@ -22,7 +22,7 @@ from rest_framework.routers import DefaultRouter
 from .views import EventoViewSet
 
 router = DefaultRouter()
-router.register(r'eventos', EventoViewSet)
+router.register(r'eventosAPI', EventoViewSet)
 
 
 urlpatterns = [
@@ -42,6 +42,8 @@ urlpatterns = [
     #path('map/', eventoVista.show_map, name='show_map'),
     path('map/<int:venue_id>/', eventoVista.show_map, name='show_map'),
     path('', include(router.urls)),
+    path('download_pdf_report',eventoVista.download_pdf_report, name='download_pdf_report'),
+    path('download_excel_report',eventoVista.download_excel_report, name='download_excel_report'),
     
    
     
