@@ -132,3 +132,5 @@ def delete_venue(request, venue_id):
 def show_map(request, venue_id):
     venue = Venue.objects.get(id=venue_id)
     return render(request, 'eventos/map.html', {'api_key': 'AIzaSyDDmNlCxUaPrnv-pgCY_gYEKApbu7A1sm8', 'direccion': venue.address})
+
+

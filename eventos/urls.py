@@ -36,6 +36,7 @@ urlpatterns = [
     path('delete_venue/<venue_id>',eventoVista.delete_venue, name='delete_venue'),
     #path('map/', eventoVista.show_map, name='show_map'),
     path('map/<int:venue_id>/', eventoVista.show_map, name='show_map'),
+   
     
     #debug funciona
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
