@@ -14,6 +14,7 @@ from rest_framework import viewsets
 from .report_generators import PDFReportGenerator, ExcelReportGenerator
 from django.http import FileResponse
 from .utils import get_data_from_api
+from .dummy import create_dummy
 
 # Create your views here.
 
@@ -29,6 +30,8 @@ def home(request, year = datetime.now().year, month = datetime.now().strftime('%
     current_year = now.year
 
     return render(request, 'eventos/home.html', {"calendario":calendario, "current_year":current_year})
+
+
 
 def prendas(request):
     respuesta = get_data_from_api(request)
