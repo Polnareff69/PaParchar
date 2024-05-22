@@ -44,6 +44,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('download_pdf_report',eventoVista.download_pdf_report, name='download_pdf_report'),
     path('download_excel_report',eventoVista.download_excel_report, name='download_excel_report'),
+    path('prendas',eventoVista.prendas,name='prendas')
     
    
     
